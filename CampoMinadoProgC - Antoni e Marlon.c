@@ -23,7 +23,7 @@ int AbreArea( int Tabuleiro[_Height_][_Width_],
     int cont = 0;
     
     
-    // verifica se posiÁ„o selecionada pode ser aberta.
+    // verifica se posi√ß√£o selecionada pode ser aberta.
     if( TabVisual[Y][X] == _FECHADA_ && Tabuleiro[Y][X] == _VAZIA_ ){
     	
         TabVisual[Y][X] = _ABERTA_;
@@ -56,12 +56,8 @@ void MostraTabuleiro(int Tabuleiro[_Height_][_Width_],int TabVisual[_Height_][_W
         if(C < 9){
         	printf("  %d  ", C+1); 
 		}else{
-			if(C < 99){
+			if(C < 99){//so funciona ate 999
 				printf(" %d  ", C+1); 
-			}else{
-				if(C < 999){//so funciona ate 1000
-					printf("%d  ", C+1); 
-				}
 			}
 		} 
     }
@@ -86,7 +82,7 @@ void MostraTabuleiro(int Tabuleiro[_Height_][_Width_],int TabVisual[_Height_][_W
 			if(L < 99){
 				printf(" %d  ", L+1);
 			}else{
-				if(L < 999){//so funciona ate 1000
+				if(L < 99){//so funciona ate 999
 					printf(" %d  ", L+1);
 				}	
 			}
@@ -152,12 +148,12 @@ void MontaTabuleiro(int Tabuleiro[_Height_][_Width_])
         }
     }
 
-    // sorteia as posiÁıes das bombas
+    // sorteia as posi√ß√µes das bombas
     while (qtBombasAlocadas < _QtBombas_)
     {
         achei = false;
-        int X = rand() % (_Width_  - 1); // sorteia uma posiÁ„o X (coluna)
-        int Y = rand() % (_Height_ - 1); // sorteia uma posiÁ„o Y (linha)
+        int X = rand() % (_Width_  - 1); // sorteia uma posi√ß√£o X (coluna)
+        int Y = rand() % (_Height_ - 1); // sorteia uma posi√ß√£o Y (linha)
 
         if (Tabuleiro[Y][X] == _BOMBA_)
         {
@@ -172,7 +168,7 @@ void MontaTabuleiro(int Tabuleiro[_Height_][_Width_])
 
     }
 
-    // contagem de bombas para cada cÈlula
+    // contagem de bombas para cada c√©lula
     int contBombas = 0;
     for (L = 0; L < _Height_; L++)
     {
@@ -192,7 +188,7 @@ void MontaTabuleiro(int Tabuleiro[_Height_][_Width_])
                 if (L > 0 && C > 0)							 if (Tabuleiro[L - 1][C - 1] == _BOMBA_) contBombas++; // diag sup esquerda
 
                 Tabuleiro[L][C] = (contBombas == 0 ? _VAZIA_ : contBombas);
-                // caso n„o exista nenhuma bomba ou contagem igual a zero, entao inicia a cÈlula com o status _VAZIA_.
+                // caso n√£o exista nenhuma bomba ou contagem igual a zero, entao inicia a c√©lula com o status _VAZIA_.
             }
         }
     }
@@ -293,7 +289,7 @@ void inicio(int Tabuleiro[_Height_][_Width_],int TabVisual[_Height_][_Width_]){
 
     for (i = 0; i < _Height_; i++){
         for (j = 0; j < _Width_; j++){
-            TabVisual[i][j] = _FECHADA_; // todas as cÈlulas estao fechadas!
+            TabVisual[i][j] = _FECHADA_; // todas as c√©lulas estao fechadas!
         }
     }
     MontaTabuleiro(Tabuleiro);
